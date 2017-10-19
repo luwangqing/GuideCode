@@ -20,7 +20,7 @@
         <header class="masthead">
   <div class="container">
     <span class="icon">&#9997;</span>
-    <h1 data-step="1" data-intro="Hello! :) 欢迎查看前端编码指南">Code Guide by @AYGTeam-Q</h1>
+    <h1 data-step="1" data-intro="Hello! :) 欢迎查看前端编码指南">Code Guide by @AYGTeam-</h1>
     <p class="lead">Standards for developing flexible, durable, and sustainable HTML and CSS, and maintainable JavaScript</p>
     <p class="lead">通过分析github代码库总结出来的工程师代码书写习惯：<a href="http://sideeffect.kr/popularconvention#javascript" target="_blank">GO!!!</a></p>
 
@@ -120,7 +120,6 @@
     <div class="col">
         <h4><a href="#react_jsx" data-step="5" data-intro="JS规范">React/JSX</a></h4>
         <ul>
-            <li><a href="#">声明</a></li>
             <li><a href="#react-naming">命名</a></li>
             <li><a href="#react-creat-modol">创建模块</a></li>
             <li><a href="#react-params">类参数</a></li>
@@ -133,7 +132,6 @@
             <li><a href="#react-catch">网络请求</a></li>
             <li><a href="#react-import-something">资源或文件引入顺序</a></li>
             <li><a href="#react-interactive">普通交互</a></li>
-            <li><a href="#react-data-simulation">本地模拟数据</a></li>
             <li><a href="#react-life">生命周期顺序</a></li>
         </ul>
     </div>
@@ -2250,7 +2248,7 @@
     </div>
     <div class="col">
         <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// not good</span>
-<span class="k">import reservationCard from './ReservationCard';</span>
+<span class="k">import <span class="nx">reservationCard</span> from './ReservationCard';</span>
 
 <span class="c1">// good</span>
 <span class="k">import ReservationCard from './ReservationCard';</span>
@@ -2300,12 +2298,12 @@
 <span class="c1">//not good</span>
 <span class="k">let listing = ()=> {</span>
     <span class="c1">console.log(“log som”);</span>
-<span class="k">}); </span>
+<span class="k">} </span>
 
 <span class="c1">// good</span>
 <span class="k">listing() {</span>
     <span class="c1">console.log(“log som”);</span>
-<span class="k">}); </span>
+<span class="k">} </span>
 
 <span class="c1">//not good</span>
 <span class="k">class SomeClass{</span>
@@ -2440,6 +2438,7 @@
         <p>图片命名总是带icon_前缀;</p>
         <p>本地图片引用总是使用import格式；</p>
         <p>常规图片总是带有resizeMode属性;</p>
+        <p>图片引入统一在 {项目/src/ui_layer/assets/index.js} 文件中，其他文件引入图片均从 {项目/src/ui_layer/assets/index.js} 中导入;</p>
     </div>
     <div class="col">
         <div class="highlight"><pre><code class="language-javascript" data-lang="javascript">
@@ -2473,7 +2472,7 @@
 <div class="section" id="react-global-variable">
     <div class="col">
         <h3>全局变量</h3>
-        <p>全局变量使用global进行定义，并统一在{项目/config/index}文件中定义；</p>
+        <p>全局变量使用global进行定义，并统一在 {项目/config/index} 文件中定义；</p>
         <p>每个全局变量需标注具体用途;</p>
     </div>
     <div class="col">
@@ -2489,7 +2488,7 @@
 <div class="section" id="react-constant">
     <div class="col">
         <h3>全局常量</h3>
-        <p>全局常量总是用const定义，并统一在{项目/common/constants/index}文件中定义；</p>
+        <p>全局常量总是用const定义，并统一在 {项目/common/constants/index} 文件中定义；</p>
         <p>常量总是用大写字母；</p>
         <p>常量命名和常量值总是相等；</p>
     </div>
@@ -2563,6 +2562,7 @@
 <div class="section" id="react-import-something">
     <div class="col">
         <h3>头部引入顺序</h3>
+        <p>•	对象解构如超过一个变量需要换行</p>
         <p>•	头部引入按照以下顺序</p>
         <p>     引入react相关模块</p>
         <p>     引入react-native相关模块</p>
@@ -2575,25 +2575,54 @@
     <div class="col">
         <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// not good</span>
 <span class="k">import { DISCOVER_CATALOGUE, VERIFY_BIND_PHONE } from "../urls";</span>
-<span class="k">import ScrollableTabBar from "../ScrollableTabBar";</span>
-<span class="k">import { get, post } from "../request-utils";</span>
 
 <span class="c1">// good</span>
-<span class="k">import { DISCOVER_CATALOGUE, VERIFY_BIND_PHONE } from "../urls";</span>
-<span class="k">import { get, post } from "../request-utils";</span>
+<span class="k">import { </span>
+    <span class="k">DISCOVER_CATALOGUE,</span>
+    <span class="k">VERIFY_BIND_PHONE</span>
+<span class="k">} from "../urls";</span>
+
+// not good</span>
+<span class="k">import { </span>
+    <span class="k">DISCOVER_CATALOGUE,</span>
+    <span class="k">VERIFY_BIND_PHONE</span>
+<span class="k">} from "../urls";</span>
+<span class="k">import ScrollableTabBar from "../ScrollableTabBar";</span>
+<span class="k">import { </span>
+    <span class="k">get,</span>
+    <span class="k">post</span>
+<span class="k">} from "../urls";</span>
+
+<span class="c1">// good</span>
+<span class="k">import { </span>
+    <span class="k">DISCOVER_CATALOGUE,</span>
+    <span class="k">VERIFY_BIND_PHONE</span>
+<span class="k">} from "../urls";</span>
+<span class="k">import { </span>
+    <span class="k">get,</span>
+    <span class="k">post</span>
+<span class="k">} from "../urls";</span>
 <span class="k">import ScrollableTabBar from "../ScrollableTabBar";</span>
 
 <span class="c1">// 按照以下顺序引入</span>
 <span class="k">import React, { Component } from "react";</span>
-<span class="k">import { Text，View } from "react-native";</span>
+<span class="k">import { </span>
+    <span class="k">Text,</span>
+    <span class="k">View</span>
+<span class="k">} from "react-native";</span>
 
 <span class="k">import { connect } from "react-redux";</span>
 <span class="k">import Toast from "react-native-root-toast";<span class="c1">// 引入toast弹窗</span></span>
 
-<span class="k">import { DISCOVER_CATALOGUE, VERIFY_BIND_PHONE } from "../urls";</span>
-<span class="k">import { get, post } from "../request-utils";</span>
+<span class="k">import { </span>
+    <span class="k">DISCOVER_CATALOGUE,</span>
+    <span class="k">VERIFY_BIND_PHONE</span>
+<span class="k">} from "../urls";</span>
+<span class="k">import { </span>
+    <span class="k">get,</span>
+    <span class="k">post</span>
+<span class="k">} from "../urls";</span>
 <span class="k">import ScrollableTabBar from "../ScrollableTabBar";</span>
-<span class="k">import icon_clock from "../icon_click.png";</span>
 
 <span class="k">const COME_CONST = 'SOME_CONST';</span>
 <span class="k">let someVarible = 1;</span>
@@ -2609,14 +2638,6 @@
         <p>请求数据如遇接口导致的问题显示网络错误提示（或根据产品需求展示对应提示）</p>
         <p>请求数据如遇网络导致的问题显示网络错误提示（或根据产品需求展示对应提示）</p>
         <p>严禁加载完成无任何交互提示</p>
-    </div>
-</div>
-<div class="section" id="react-data-simulation">
-    <div class="col">
-        <h3>本地数据模拟</h3>
-        <p>本地数据模拟使用appmock模拟数据</p>
-        <p>使用appmock模拟数据的接口需打上warning</p>
-        <p>不使用创建json数据的格式模拟假数据</p>
     </div>
 </div>
 <div class="section" id="react-life">
@@ -2645,12 +2666,14 @@
 <div class="section" id="react_native_interactive">
     <div class="col">
         <h3>原生交互</h3>
-        <p>同个事件下，iOS和安卓导出的方法名字必须一致</p>
-        <p>原生导出的native组件或功能，文件夹命名按照react-native-前缀格式，并统一放在{项目/native_modeles/}目录下</p>
+        <p>同个事件下，iOS和安卓导出的方法名字必须一致；</p>
+        <p>原生导出的native组件或功能，文件夹命名按照react-native-前缀格式，并统一放在 {项目/native_modules/} 目录下；</p>
+        <p>Native模块导出给React必须在对应native modules下index.js文件中导出；</p>
+        <p>导出Native模块必须同时包含iOS和Android;</p>
     </div>
             <div class="col">
-                <div class="highlight"><pre><code class="language-javascript" data-lang="javascript">
-                </code></pre>
+                <div class="highlight">
+                    <Img src="images/reactnative_1.png" alt="ReactNative 原生交互" width="500"/>
                 </div>
             </div>
         </div>
